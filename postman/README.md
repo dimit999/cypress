@@ -12,6 +12,7 @@ This repository contains a comprehensive set of automated tests for the **Petsto
 4. [How to Use](#how-to-use)
 5. [Tests](#tests)
 6. [Postman Collection Export](#postman-collection-export)
+7. [Performance: run Newman and check results](#performance-run-newman-and-check-results)
 
 ---
 
@@ -114,3 +115,12 @@ The collection has been exported and can be imported into Postman. You can find 
 ---
 
 This README file describes the automated test scenarios for the Petstore API. It covers positive, negative, and edge cases and can be used to validate the functionality of the Petstore API endpoints.
+
+### 7. Performance: run Newman and check results
+1. Install Newman
+`npm install -g newman`
+2. Install report library
+`npm install newman-reporter-html`
+3. run Postman tests
+`newman run Petstore_API_Collection.postman_collection.json -r html --reporter-html-export result.html`
+4. check report.html in the Postman folder
