@@ -22,6 +22,13 @@ export abstract class BaseElement {
   }
 
   /**
+   * Hovers over the element (using trigger 'mouseover').
+   */
+  hover() {
+    this.get().trigger('mouseover');
+  }
+
+  /**
    * Scrolls the element into view.
    */
   scrollIntoView() {

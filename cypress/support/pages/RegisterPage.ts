@@ -1,15 +1,17 @@
 import { Input } from '../ui/baseElements/Input';
 import { Button } from '../ui/baseElements/Button';
 import { BasePage } from '../ui/basePage/BasePage';
+import {Label} from "@support/ui/baseElements/Label";
 
 export class RegisterPage extends BasePage {
   // Element selectors (for reuse)
-  private firstNameInput = '#firstname';
-  private lastNameInput = '#lastname';
-  private emailInput = '#email_address';
-  private passwordInput = '#password';
-  private confirmPasswordInput = '#password-confirmation';
-  private submitButton = "button[title='Create an Account']";
+  private uniquePageSelector = '#lastname';
+  private firstNameInput = new Input('#firstname');
+  private lastNameInput = new Input(this.uniquePageSelector);
+  private emailInput = new Input('#email_address');
+  private passwordInput = new Input('#password');
+  private confirmPasswordInput = new Input('#password-confirmation');
+  private submitButton = new Button("button[title='Create an Account']");
 
   /**
    * Navigates to the customer account creation page.
@@ -27,7 +29,7 @@ export class RegisterPage extends BasePage {
    * @return {void} This method does not return a value.
    */
   fillFirstName(name: string) {
-    new Input(this.firstNameInput).type(name);
+    this.firstNameInput.type(name);
   }
 
   /**
@@ -37,7 +39,7 @@ export class RegisterPage extends BasePage {
    * @return {void} No return value.
    */
   fillLastName(name: string) {
-    new Input(this.lastNameInput).type(name);
+    this.lastNameInput.type(name);
   }
 
   /**
@@ -47,7 +49,7 @@ export class RegisterPage extends BasePage {
    * @return {void} Does not return any value.
    */
   fillEmail(email: string) {
-    new Input(this.emailInput).type(email);
+    this.emailInput.type(email);
   }
 
   /**
@@ -57,7 +59,7 @@ export class RegisterPage extends BasePage {
    * @return {void} This method does not return any value.
    */
   fillPassword(password: string) {
-    new Input(this.passwordInput).type(password);
+    this.passwordInput.type(password);
   }
 
   /**
@@ -67,7 +69,7 @@ export class RegisterPage extends BasePage {
    * @return {void} Does not return a value.
    */
   fillConfirmPassword(password: string) {
-    new Input(this.confirmPasswordInput).type(password);
+    this.confirmPasswordInput.type(password);
   }
 
   /**
@@ -76,11 +78,11 @@ export class RegisterPage extends BasePage {
    * @return {void} Does not return any value.
    */
   submit() {
-    new Button(this.submitButton).click();
+    this.submitButton.click();
   }
 
   protected getUniqueElementSelector(): string {
-    return this.firstNameInput;
+    return this.uniquePageSelector;
   }
 
   protected getUniqueElementIsXpath(): boolean {

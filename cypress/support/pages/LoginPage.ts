@@ -4,10 +4,11 @@ import { BasePage } from '../ui/basePage/BasePage';
 
 export class LoginPage extends BasePage {
   // Element selectors (for reuse)
-  private emailInput = '#email';
-  private passwordInput = '#pass';
-  private signInButton = "//div[contains(@class, 'container')]//span[text()='Sign In']";
-  private errorMessage = '.message-error';
+  private uniquePageSelector = "//div[contains(@class, 'container')]//span[text()='Sign In']";
+  private emailInput = new Input('#email');
+  private passwordInput = new Input('#pass');
+  private signInButton = new Button(this.uniquePageSelector,
+      true);
 
   /**
    * Navigates the browser to the customer login page.
@@ -25,7 +26,7 @@ export class LoginPage extends BasePage {
    * @return {void} This method does not return any value.
    */
   fillEmail(email: string) {
-    new Input(this.emailInput).type(email);
+    this.emailInput.type(email);
   }
 
   /**
@@ -35,7 +36,7 @@ export class LoginPage extends BasePage {
    * @return {void}
    */
   fillPassword(password: string) {
-    new Input(this.passwordInput).type(password);
+    this.passwordInput.type(password);
   }
 
   /**
@@ -44,17 +45,7 @@ export class LoginPage extends BasePage {
    * @return {void} This method does not return anything.
    */
   submit() {
-    new Button(this.signInButton, true).click();
-  }
-
-  /**
-   * Get the error message displayed after a failed login attempt.
-   *
-   * The error message is contained in an element with the class `message-error`.
-   * @returns The error message element.
-   */
-  getErrorMessage() {
-    return cy.get(this.errorMessage);
+    this.signInButton.click();
   }
 
   /**
@@ -62,7 +53,7 @@ export class LoginPage extends BasePage {
    * @returns The unique element selector.
    */
   protected getUniqueElementSelector(): string {
-    return this.signInButton;
+    return this.uniquePageSelector;
   }
 
   protected getUniqueElementIsXpath(): boolean {

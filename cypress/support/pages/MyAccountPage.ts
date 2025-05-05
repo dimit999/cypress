@@ -5,12 +5,12 @@ import { BasePage } from '../ui/basePage/BasePage';
 
 export class MyAccountPage extends BasePage {
     // Element selectors (for reuse)
-    private welcomeMessage = '.greet.welcome';
-    private contactInfo = '.box-information .box-content';
-    private successMessageLabel = '//div[contains(@class, \'message-success\')]';
-    private userSwitcherButton = '(//button[contains(@class, \'switch\')])[1]';
-    private userSignOut = '(//div[contains(@class, \'menu\')]//a[contains(@href, \'logout\')])[1]';
-    private contactInformationLabel = '//div[contains(@class, \'information\')]//p';
+    private uniquePageSelector = '.box-information .box-content';
+    private welcomeMessage = new Label('.greet.welcome');
+    private contactInfo = new Label(this.uniquePageSelector);
+    private successMessageLabel = new Label('//div[contains(@class, \'message-success\')]', true);
+    private userSwitcherButton = new Button('(//button[contains(@class, \'switch\')])[1]', true);
+    private userSignOut = new Button('(//div[contains(@class, \'menu\')]//a[contains(@href, \'logout\')])[1]', true);
 
     /**
      * Retrieves the welcome message displayed after a successful login.
@@ -19,7 +19,7 @@ export class MyAccountPage extends BasePage {
      * @returns The welcome message element.
      */
     getWelcomeMessage() {
-        return new Label(this.welcomeMessage).get();
+        return this.welcomeMessage.get();
     }
 
     /**
@@ -28,7 +28,7 @@ export class MyAccountPage extends BasePage {
      * @return {Cypress.Chainable} A Cypress chainable object representing the contact information element.
      */
     getContactInformation() {
-        return new Label(this.contactInfo).get();
+        return this.contactInfo.get();
     }
 
     /**
@@ -38,7 +38,7 @@ export class MyAccountPage extends BasePage {
      * element.
      */
     getSuccessMessage() {
-        return new Label(this.successMessageLabel, true).get();
+        return this.successMessageLabel.get();
     }
 
     /**
@@ -48,8 +48,8 @@ export class MyAccountPage extends BasePage {
      * @return {void} No return value.
      */
     signOut() {
-        new Button(this.userSwitcherButton, true).click();
-        new Button(this.userSignOut, true).click();
+        this.userSwitcherButton.click();
+        this.userSignOut.click();
     }
 
     /**
@@ -60,7 +60,7 @@ export class MyAccountPage extends BasePage {
     }
 
     protected getUniqueElementSelector(): string {
-        return this.contactInfo;
+        return this.uniquePageSelector;
     }
 
 

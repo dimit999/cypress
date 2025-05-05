@@ -6,6 +6,7 @@
 // describe('Place order with multiple products', () => {
 //   it('should login and place an order with multiple products', () => {
 //       const myAccountPage = new MyAccountPage();
+//       myAccountPage.getNavigationPanel().clickWomenTops()
 //     // TODO: Add steps to add multiple products to cart and place order
 //
 //     myAccountPage.getWelcomeMessage().should('contain', getUser().firstName);
