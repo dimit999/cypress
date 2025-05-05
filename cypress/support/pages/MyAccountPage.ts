@@ -1,6 +1,6 @@
 import { Label } from '../ui/baseElements/Label';
 import { Button } from '../ui/baseElements/Button';
-import { NavigationPanel } from '../ui/forms/NavigationPanel';
+import { NavigationPanel } from '@support/forms/NavigationPanel';
 import { BasePage } from '../ui/basePage/BasePage';
 
 export class MyAccountPage extends BasePage {

@@ -29,6 +29,15 @@ export abstract class BaseElement {
   }
 
   /**
+   * Gets the value of the specified attribute from the element.
+   * @param attr Attribute name
+   * @returns Cypress.Chainable with attribute value
+   */
+  getAttribute(attr: string) {
+    return this.get().invoke('attr', attr);
+  }
+
+  /**
    * Scrolls the element into view.
    */
   scrollIntoView() {
