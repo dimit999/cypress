@@ -101,8 +101,8 @@ This collection includes various tests for different scenarios:
 ## Notes:
 - Enough cases return 500 error because from BackEnd not validation for valid format.
 - No validation for required fields (that should be by logic).
-- Positive POST api requests return "9223372036854776000" petId always, 
-and for Positive GET requests it returns always ""message": "java.lang.NumberFormatException""
+- Positive POST api requests return "9223372036854776000" petId always,
+  and for Positive GET requests it returns always ""message": "java.lang.NumberFormatException""
 ---
 
 ### 6. Postman Collection Export
@@ -117,10 +117,16 @@ The collection has been exported and can be imported into Postman. You can find 
 This README file describes the automated test scenarios for the Petstore API. It covers positive, negative, and edge cases and can be used to validate the functionality of the Petstore API endpoints.
 
 ### 7. Performance: run Newman and check results
-1. Install Newman
-`npm install -g newman`
-2. Install report library
-`npm install newman-reporter-html`
-3. run Postman tests
-`newman run Petstore_API_Collection.postman_collection.json -r html --reporter-html-export result.html`
-4. check report.html in the Postman folder
+1. Install Newman:
+   ```bash
+   npm install -g newman
+2. Install report library:
+   ```bash
+   npm install newman-reporter-html
+
+3. Run Postman tests:
+   ```
+   newman run Petstore_API_Collection.postman_collection.json -r html --reporter-html-export result.html
+   ```
+
+4. Check report.html in the Postman folder:
