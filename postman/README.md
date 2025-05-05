@@ -6,14 +6,13 @@ This repository contains a comprehensive set of automated tests for the **Petsto
 - **GET /pet/{petId}**: Fetches details of a pet based on the provided Pet ID.
 
 ## Table of Contents
-1. [Overview](#overview)
-2. [Postman Collection Details](#postman-collection-details)
-3. [Test Scenarios](#test-scenarios)
-4. [How to Use](#how-to-use)
-5. [Tests](#tests)
-6. [Postman Collection Export](#postman-collection-export)
-7. [Performance: run Newman and check results](#performance-run-newman-and-check-results)
-
+1. [Overview](#1-overview)
+2. [Postman Collection Details](#2-postman-collection-details)
+3. [Test Scenarios](#3-test-scenarios)
+4. [How to Use](#4-how-to-use)
+5. [Tests](#5-tests)
+6. [Postman Collection Export](#6-postman-collection-export)
+7. [Performance: run Newman and check results](#7-performance-run-newman-and-check-results)
 ---
 
 ### 1. Overview
@@ -129,4 +128,4 @@ This README file describes the automated test scenarios for the Petstore API. It
    newman run Petstore_API_Collection.postman_collection.json -r html --reporter-html-export result.html
    ```
 
-4. Check report.html in the Postman folder:
+4. Check report.html in the Postman folder.
