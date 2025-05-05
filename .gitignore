@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Cypress generated files
+cypress/.cache/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+cypress/reports/
+
+# Cypress logs (if any custom logging is added)
+*.log
+
+# TypeScript build artifacts
+dist/
+*.tsbuildinfo
+
+# IDE/editor files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Env files (if used)
+.env
+
+# Coverage (if using Istanbul/nyc)
+coverage/
+
+# Reports (if you generate them)
+allure-results/
+mochawesome-report/

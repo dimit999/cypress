@@ -1,0 +1,37 @@
+{
+  "name": "magento-cypress-framework",
+  "version": "1.0.0",
+  "description": "Cypress + TypeScript automation framework for Magento demo site (UI & API)",
+  "scripts": {
+    "test": "cypress run --reporter cypress-mochawesome-reporter",
+    "test:headed": "cypress run --headed --reporter cypress-mochawesome-reporter",
+    "test:chrome": "cypress run --browser chrome --reporter cypress-mochawesome-reporter",
+    "test:firefox": "cypress run --browser firefox --reporter cypress-mochawesome-reporter",
+    "test:edge": "cypress run --browser edge --reporter cypress-mochawesome-reporter",
+    "test:ui": "cypress run --spec 'cypress/e2e/ui/**/*.cy.ts' --reporter cypress-mochawesome-reporter",
+    "test:api": "cypress run --spec 'cypress/e2e/api/**/*.cy.ts' --reporter cypress-mochawesome-reporter",
+    "report:merge": "mochawesome-merge cypress/reports/*.json > cypress/reports/mochawesome.json",
+    "report:generate": "marge cypress/reports/mochawesome.json --reportDir cypress/reports/html",
+    "report": "npm run report:merge && npm run report:generate",
+    "lint": "eslint . --ext .ts,.js",
+    "format": "prettier --write ."
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "csv-parse": "^5.6.0",
+    "cypress": "^14.3.2",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-xpath": "^2.0.1",
+    "eslint": "^9.26.0",
+    "mocha": "^11.2.2",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "xlsx": "^0.18.5"
+  }
+}
