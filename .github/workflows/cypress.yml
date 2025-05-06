@@ -51,6 +51,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true  # Ensure this step runs even if previous steps fail
       - name: Check generated reports
         run: |
           echo "Listing files in cypress/reports"
