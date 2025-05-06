@@ -1,5 +1,3 @@
-// cypress/support/testSetup.ts
-
 export interface RegisteredUser {
   email: string;
   password: string;

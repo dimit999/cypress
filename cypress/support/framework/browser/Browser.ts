@@ -33,6 +33,12 @@ export class Browser {
     }
   }
 
+  /**
+   * Refreshes the current page by reloading it.
+   * Utilizes Cypress's `reload` method to trigger the page reload.
+   *
+   * @return {void} Does not return a value.
+   */
   static refresh() {
     cy.reload();
   }

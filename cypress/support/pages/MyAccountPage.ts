@@ -20,31 +20,15 @@ export class MyAccountPage extends BasePage {
     "//div[contains(@class, 'message-success')]",
     true,
   );
-  /**
-   * Retrieves the welcome message displayed after a successful login.
-   *
-   * The welcome message is contained in an element with the class ` greet welcome `.
-   * @returns The welcome message element.
-   */
+
   getWelcomeMessage() {
     return this.welcomeMessage.get();
   }
 
-  /**
-   * Retrieves the contact information element using the defined XPath selector.
-   *
-   * @return {Cypress.Chainable} A Cypress chainable object representing the contact information element.
-   */
   getContactInformation() {
     return this.contactInfo.get();
   }
 
-  /**
-   * Retrieves the element containing the success message using a specific CSS selector.
-   *
-   * @return {Cypress.Chainable<JQuery<HTMLElement>>} A chainable Cypress object representing the success message
-   * element.
-   */
   getSuccessMessage() {
     return this.successMessageLabel.get();
   }

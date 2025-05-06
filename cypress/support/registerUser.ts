@@ -28,7 +28,6 @@ Cypress.Commands.add(
         .getSuccessMessage()
         .should("contain", "Thank you for registering");
 
-      // Wrap the result so Cypress chains properly
       return cy.wrap({ email, password, firstName, lastName });
     });
   },

@@ -2,39 +2,21 @@ import "./commands";
 import "./registerUser";
 import "cypress-mochawesome-reporter/register";
 
+// List of known non-critical errors to ignore
+const ignoredErrors = [
+  "AddFotoramaVideoEvents is not a function",
+  "Cannot read properties of undefined (reading 'data')",
+  "Cannot read properties of undefined (reading 'clone')",
+  "Cannot read properties of undefined (reading 'setOptions')",
+];
+
 Cypress.on("uncaught:exception", (err) => {
-  // Ignore specific error about AddFotoramaVideoEvents
-  if (
-    err.message &&
-    err.message.includes("AddFotoramaVideoEvents is not a function")
-  ) {
-    return false; // prevents Cypress from failing the test
+  const message = err.message || "";
+
+  // Ignore error if it matches any of the known patterns
+  if (ignoredErrors.some((pattern) => message.includes(pattern))) {
+    return false; // prevent test failure
   }
-  // Ignore errors about reading 'data' of undefined
-  if (
-    err.message &&
-    err.message.includes("Cannot read properties of undefined (reading 'data')")
-  ) {
-    return false;
-  }
-  // Ignore errors about reading 'clone' of undefined
-  if (
-    err.message &&
-    err.message.includes(
-      "Cannot read properties of undefined (reading 'clone')",
-    )
-  ) {
-    return false;
-  }
-  // Ignore errors about reading 'setOptions' of undefined
-  if (
-    err.message &&
-    err.message.includes(
-      "Cannot read properties of undefined (reading 'setOptions')",
-    )
-  ) {
-    return false;
-  }
-  // Let all other errors fail the test
-  return true;
+
+  return true; // allow all other errors to fail the test
 });

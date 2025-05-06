@@ -73,10 +73,6 @@ export class ShippingAddressPage extends BasePage {
     this.nextButton.click();
   }
 
-  /**
-   * Returns the unique element selector for the login page.
-   * @returns The unique element selector.
-   */
   protected getUniqueElementSelector(): string {
     return this.uniquePageSelector;
   }

@@ -19,9 +19,6 @@ export class NavigationPanel {
     true,
   );
 
-  /**
-   * Clicks the Women tab in the navigation panel.
-   */
   clickWomen() {
     this.womenTab.click();
   }

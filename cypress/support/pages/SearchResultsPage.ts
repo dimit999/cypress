@@ -25,6 +25,7 @@ export class SearchResultsPage extends BasePage {
   );
 
   getAllItemsText(): Cypress.Chainable<string[]> {
+    this.allItemsText.waitElementState("visible")
     return this.allItemsText.getAllTexts();
   }
 

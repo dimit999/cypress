@@ -12,6 +12,7 @@ describe("Search products and validate results", () => {
       myAccountPage.header.fillSearchCriteria(searchCriteria);
 
       const searchResultsPage = new SearchResultsPage();
+      searchResultsPage.waitUntilLoaded()
       searchResultsPage.getAllItemsText().then((items) => {
         items.forEach((item) => {
           expect(item.toLowerCase()).to.include(searchCriteria.toLowerCase());

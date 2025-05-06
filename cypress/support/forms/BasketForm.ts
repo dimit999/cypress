@@ -17,9 +17,6 @@ export class BasketForm {
     true,
   );
 
-  /**
-   * Gets the total basket amount, extracting the number from the label text.
-   */
   getTotalBasketAmount() {
     return this.totalBasketAmountLabel.getText().then((text) => {
       return StringUtils.extractNumber(text);

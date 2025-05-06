@@ -1,4 +1,3 @@
-// Custom commands and data loaders for Cypress
 import * as XLSX from "xlsx";
 import { parse } from "csv-parse/sync";
 import "cypress-xpath";

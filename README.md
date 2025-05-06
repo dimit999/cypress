@@ -128,3 +128,17 @@ You can configure Prettier and ESLint by adding `.prettierrc` and `.eslintrc` fi
 ---
 
 **Do not store real credentials or API keys in the repo. Use environment variables!**
+
+## Main Features of This Cypress Test Framework
+
+- **Page Object Model**: All UI pages and forms are represented as classes, encapsulating selectors and reusable methods for maintainable, scalable tests.
+- **Fixtures & Data-Driven Testing**: Supports reading test data from JSON, CSV, and Excel files, enabling flexible and robust data-driven tests.
+- **Base Page & Base Elements**: Core abstractions (`BasePage`, `BaseElement`) provide shared methods (e.g., waiting for visibility, interacting with elements) to avoid code duplication.
+- - **Element Abstractions**: UI elements are split into dedicated classes (e.g., `Button`, `Input`, `DropDown`) for reusable, maintainable selectors and actions.
+- **CSS & XPath Selectors**: Framework supports both CSS and XPath selectors for flexible and precise element targeting.
+- **Clean Code Principles**: Forms and step definitions are modular and DRY (Don't Repeat Yourself), ensuring maintainable and readable code.
+- **Parallel & Cross-Browser Testing**: GitHub Actions CI is configured to run tests in parallel across different browsers (e.g., Chrome, Firefox).
+- **Automated Linting**: GitHub Actions also runs ESLint to enforce code quality and consistency.
+- **Easy Test Data Management**: Built-in support for loading and using test data from various sources for comprehensive test coverage.
+- **Reporting & Screenshots**: Generates detailed test reports with automatic screenshots on failure. Test run artifact (Report with screenshots) is available locally and on CI.
+- **CI Video Uploads**: On CI, recorded videos are uploaded to [cloud.cypress.io](https://cloud.cypress.io) for easy viewing and sharing.

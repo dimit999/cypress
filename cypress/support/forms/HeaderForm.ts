@@ -44,12 +44,6 @@ export class HeaderForm {
     this.myWishlistButton.click();
   }
 
-  /**
-   * Signs the user out of the application by interacting with the user switcher button
-   * and the sign-out option using their XPath selectors.
-   *
-   * @return {void} No return value.
-   */
   signOut(): void {
     this.userSwitcherButton.waitElementState("visible");
     this.userSwitcherButton.click();

@@ -101,7 +101,6 @@ export abstract class BaseElement {
       });
     };
 
-    // Start the check process
     return checkStable();
   }
 
@@ -119,6 +118,7 @@ export abstract class BaseElement {
       this.get().should("be.visible", { timeout }),
     );
   }
+
   /**
    * Gets the text content of the element.
    */
@@ -126,6 +126,15 @@ export abstract class BaseElement {
     return this.get().invoke("text");
   }
 
+  /**
+   * Waits for an element to reach the specified state within the given timeout.
+   * Supports states such as "visible", "not_visible", "present", and "absent".
+   *
+   * @param {ElementState} state - The target state to wait for the element to reach. Possible values are "visible",
+   * "not_visible", "present", and "absent".
+   * @param {number} [timeout=DEFAULT_UI_TIMEOUT] - The maximum wait time in milliseconds before the operation times out.
+   * @return {Cypress.Chainable} A Cypress Chainable object to facilitate the continuation of chaining operations.
+   */
   waitElementState(state: ElementState, timeout = DEFAULT_UI_TIMEOUT) {
     const getElement = () =>
       this.isXpath
