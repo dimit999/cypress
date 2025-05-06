@@ -13,7 +13,6 @@ on:
           - 2
           - 3
           - 4
-          - 5
       browser:
         description: "Browser to run tests on"
         required: true
@@ -21,8 +20,6 @@ on:
         type: choice
         options:
           - chrome
-          - firefox
-          - edge
 
 jobs:
   set-matrix:
@@ -55,7 +52,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          browser: ${{ matrix.browser }}  # Using the matrix for browser
+          browser: ${{ matrix.browser }}
           record: true
           parallel: true
           config-file: cypress.config.ts
