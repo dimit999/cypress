@@ -31,11 +31,8 @@ jobs:
     env:
       USER_EMAIL: ${{ secrets.USER_EMAIL }}
       USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [${{ github.event.inputs.containers }}]  # Dynamically set number of containers
-        browser: [${{ github.event.inputs.browser }}]          # Dynamically set browser choice
+      BROWSER: ${{ github.event.inputs.browser }}
+      CONTAINERS: ${{ github.event.inputs.containers }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
@@ -45,10 +42,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Cypress run
-        # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
-          browser: ${{ matrix.browser }}
+          browser: ${{ env.BROWSER }}
           record: true
           parallel: true
         env:
