@@ -1,5 +1,6 @@
 import { Label } from "@support/framework/baseElements/Label";
 import { Button } from "@support/framework/baseElements/Button";
+import {Input} from "@support/framework/baseElements/Input";
 
 export class HeaderForm {
   // Selectors for navigation tabs
@@ -29,6 +30,17 @@ export class HeaderForm {
     "//strong[contains(text(), 'no items')]",
     true,
   );
+
+  private searchInput = new Input(
+      "input[id*=\"search\"]",
+      false,
+  );
+
+  fillSearchCriteria(criteria: string) {
+    this.searchInput.type(criteria);
+    this.searchInput.type('{enter}');
+  }
+
 
   myWishlist(): void {
     this.userSwitcherButton.waitElementState("visible");

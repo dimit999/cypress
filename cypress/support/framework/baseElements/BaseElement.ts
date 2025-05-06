@@ -161,4 +161,18 @@ export abstract class BaseElement {
       expect(value, `Attribute "${attr}" should be absent`).to.be.undefined;
     });
   }
+
+  /**
+   * Gets the text content of all elements matching the selector.
+   * @returns Cypress.Chainable<string[]> - List of text items.
+   */
+  getAllTexts(timeout = DEFAULT_UI_TIMEOUT): Cypress.Chainable<string[]> {
+    return this.get(timeout).then(($elements) => {
+      const texts: string[] = [];
+      $elements.each((_, el) => {
+        texts.push(Cypress.$(el).text().trim());
+      });
+      return texts;
+    });
+  }
 }
