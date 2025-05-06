@@ -21,6 +21,8 @@ on:
         type: choice
         options:
           - chrome
+          - firefox
+          - edge
 
 jobs:
   set-matrix:
@@ -42,8 +44,7 @@ jobs:
       fail-fast: false
       matrix:
         container: ${{ fromJson(needs.set-matrix.outputs.matrix) }}
-        browser: [${{ github.event.inputs.browser }}]
-
+        browser: ["${{ github.event.inputs.browser }}"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -54,7 +55,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          browser: ${{ matrix.browser }}
+          browser: ${{ matrix.browser }}  # Using the matrix for browser
           record: true
           parallel: true
           config-file: cypress.config.ts
