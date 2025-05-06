@@ -23,7 +23,7 @@ export class ItemPage extends BasePage {
   }
 
   waitAddToCartButtonVisible() {
-    this.addToCartButton.wait_element_state('visible')
+    this.addToCartButton.waitElementState('visible')
   }
 
   clickSpecialLabelSizeButton(index: number) {

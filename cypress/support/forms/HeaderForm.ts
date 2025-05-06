@@ -18,6 +18,11 @@ export class HeaderForm {
     true,
   );
 
+  private noItemsMsgLabel = new Label(
+      "//strong[contains(text(), 'no items')]",
+      true,
+  );
+
   /**
    * Signs the user out of the application by interacting with the user switcher button
    * and the sign-out option using their XPath selectors.
@@ -36,6 +41,7 @@ export class HeaderForm {
   }
 
   clickBasketButton() {
+    this.basketItemsLabel.waitUntilStableAndVisible()
     this.basketButton.waitUntilStableAndVisible()
     this.basketButton.click();
   }

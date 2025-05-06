@@ -122,7 +122,7 @@ export abstract class BaseElement {
     return this.get().invoke("text");
   }
 
-  wait_element_state(state: ElementState, timeout = 4000) {
+  waitElementState(state: ElementState, timeout = 4000) {
     const getElement = () => this.isXpath
         ? cy.xpath(this.selector, { timeout })
         : cy.get(this.selector, { timeout });
