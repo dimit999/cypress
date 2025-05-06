@@ -56,8 +56,10 @@ jobs:
           echo "Listing files in cypress/reports"
           ls -l cypress/reports || echo "No reports found"
           cat cypress/reports/*.json || echo "No JSON reports generated!"
+        continue-on-error: true  # Ensure this step runs even if previous steps fail
       - name: Upload Mochawesome HTML report
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
           path: cypress/reports/index.html
+        continue-on-error: true  # Ensure this step runs even if previous steps fail
