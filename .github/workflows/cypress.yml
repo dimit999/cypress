@@ -51,20 +51,13 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check generated reports before merging
+      - name: Check generated reports
         run: |
           echo "Listing files in cypress/reports"
           ls -l cypress/reports || echo "No reports found"
           cat cypress/reports/*.json || echo "No JSON reports generated!"
-      - name: Generate HTML report
-        run: |
-          if [ -s cypress/reports/mochawesome.json ]; then
-            marge cypress/reports/mochawesome.json --reportDir cypress/reports/html;
-          else
-            echo "No valid JSON report to generate HTML!";
-          fi
       - name: Upload Mochawesome HTML report
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
-          path: cypress/reports/html
+          path: cypress/reports/index.html
