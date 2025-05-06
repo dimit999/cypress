@@ -10,9 +10,6 @@
     "test:edge": "cypress run --browser edge --reporter cypress-mochawesome-reporter",
     "test:ui": "cypress run --spec 'cypress/e2e/ui/**/*.cy.ts' --reporter cypress-mochawesome-reporter",
     "test:api": "cypress run --spec 'cypress/e2e/api/**/*.cy.ts' --reporter cypress-mochawesome-reporter",
-    "report:merge": "echo 'Merging JSON reports...'; mochawesome-merge cypress/reports/*.json > cypress/reports/mochawesome.json || echo 'Error merging reports'; cat cypress/reports/*.json",
-    "report:generate": "if [ -s cypress/reports/mochawesome.json ]; then marge cypress/reports/mochawesome.json --reportDir cypress/reports/html; else echo 'No valid JSON report to generate HTML!'; fi",
-    "report": "npm run report:merge && npm run report:generate",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
