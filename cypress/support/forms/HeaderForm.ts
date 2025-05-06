@@ -36,6 +36,7 @@ export class HeaderForm {
   }
 
   clickBasketButton() {
+    this.basketButton.waitUntilStableAndVisible()
     this.basketButton.click();
   }
 }
