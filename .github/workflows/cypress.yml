@@ -30,9 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      matrix:
-        browser: [${{ github.event.inputs.browser }}]
-        containers: [${{ github.event.inputs.containers }}]
+    env:
+      BROWSER: ${{ github.event.inputs.browser }}
+      CONTAINERS: ${{ github.event.inputs.containers }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
@@ -45,7 +45,7 @@ jobs:
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
-          browser: ${{ matrix.browser }}
+          browser: ${{ env.BROWSER }}
           record: true
           parallel: true
         env:
