@@ -41,7 +41,7 @@ export class HeaderForm {
   }
 
   clickBasketButton() {
-    this.basketItemsLabel.waitUntilStableAndVisible()
+    this.basketItemsLabel.waitElementState('visible')
     this.basketButton.waitUntilStableAndVisible()
     this.basketButton.click();
   }
