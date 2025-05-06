@@ -2,6 +2,7 @@
 import * as XLSX from 'xlsx';
 import { parse } from 'csv-parse/sync';
 import 'cypress-xpath';
+import 'cypress-real-events/support';
 
 Cypress.Commands.add('getDataFromJson', (fileName: string) => {
   return cy.fixture(fileName);

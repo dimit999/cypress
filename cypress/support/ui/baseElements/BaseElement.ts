@@ -1,3 +1,6 @@
+// @ts-ignore
+import 'cypress-real-events/support';
+
 export abstract class BaseElement {
   protected selector: string;
   protected isXpath: boolean;
@@ -22,10 +25,16 @@ export abstract class BaseElement {
   }
 
   /**
-   * Hovers over the element (using trigger 'mouseover').
+   * Hovers over the element (using trigger 'mouseover' as fallback if realHover is missing).
    */
   hover() {
-    this.get().trigger('mouseover');
+    // @ts-expect-error: realHover is provided by cypress-real-events
+    if (typeof this.get().realHover === 'function') {
+      // @ts-ignore
+      this.get().should('be.visible').realHover();
+    } else {
+      this.get().should('be.visible').trigger('mouseover', { force: true });
+    }
   }
 
   /**
@@ -49,5 +58,46 @@ export abstract class BaseElement {
    */
   shouldBeVisible() {
     this.get().should('be.visible');
+  }
+
+  /**
+   * Waits until the element is visible.
+   */
+  waitUntilVisible(timeout = 4000) {
+    this.get().should('be.visible', { timeout });
+  }
+
+  /**
+   * Waits until the element's location is stable (not moving) for a short period.
+   * This checks the element's bounding box multiple times to ensure it does not move.
+   */
+  waitUntilLocationStable(checks = 3, delay = 100) {
+    let prevRect: any;
+    let stableCount = 0;
+    const checkStable = (resolve: () => void) => {
+      this.get().then($el => {
+        const rect = $el[0].getBoundingClientRect();
+        if (
+          prevRect &&
+          rect.top === prevRect.top &&
+          rect.left === prevRect.left &&
+          rect.width === prevRect.width &&
+          rect.height === prevRect.height
+        ) {
+          stableCount++;
+        } else {
+          stableCount = 1;
+        }
+        prevRect = rect;
+        if (stableCount >= checks) {
+          resolve();
+        } else {
+          setTimeout(() => checkStable(resolve), delay);
+        }
+      });
+    };
+    return new Cypress.Promise((resolve) => {
+      checkStable(resolve);
+    });
   }
 }

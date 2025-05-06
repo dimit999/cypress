@@ -8,17 +8,17 @@ export class WomenTopsPage extends BasePage {
     // Element selectors (for reuse)
     private uniquePageSelector = "//span[contains(text(), 'Tops')]";
 
-    getAddToCartButton(index: number) {
-        return new Button(`(//li[contains(@class, \'product-item\')]//button[contains(@type, \'submit\')])[${index}]`, true);
+    getSpecificCardItemImage(index: number) {
+        return new Label(`(//div[contains(@class, 'product-item-info')]//span[contains(@class, 'product-image-wrapper')])[${index}]`, true);
     }
 
     clickSpecialItemAddToCartButtonWithHover(index: number) {
         new Label(`(//div[contains(@class, 'product-item-info')])[${index}]`, true).hover();
-        this.getAddToCartButton(index).click()
+        this.getSpecificCardItemImage(index).click();
     }
 
     clickSpecialItemAddToCartButtonWithoutHover(index: number) {
-        this.getAddToCartButton(index).click()
+        this.getSpecificCardItemImage(index).click()
     }
 
     protected getUniqueElementSelector(): string {

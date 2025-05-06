@@ -1,6 +1,6 @@
 import { ItemPage } from "@pages/navigationPages/ItemPage";
 import { WomenTopsPage } from "@pages/navigationPages/WomenTopsPage";
-import {Browser} from "@support/ui/browser/Browser";
+import { Browser } from "@support/ui/browser/Browser";
 
 export class ProductItemsSteps {
   /**
@@ -9,16 +9,14 @@ export class ProductItemsSteps {
    * @param clickSpecialColor Whether to click the color button
    * @param clickSpecialSize Whether to click the size button
    * @param withMouseHover Whether to use mouse hover
-   * @returns List of product prices added to the cart
    */
-  addProductsToCart(numberOfItems: number, clickSpecialColor: boolean, clickSpecialSize: boolean,
-                    withMouseHover: boolean) {
-    const productPrices: number[] = [];
-
-    const promises = [];
+  addProductsToCart(numberOfItems: number, clickSpecialColor: boolean, clickSpecialSize: boolean, withMouseHover: boolean) {
+    let totalProductPrice = 0;
 
     for (let i = 1; i <= numberOfItems; i++) {
       const womenTopsPage = new WomenTopsPage();
+      womenTopsPage.waitUntilLoaded();
+
       if (withMouseHover) {
         womenTopsPage.clickSpecialItemAddToCartButtonWithHover(i);
       } else {
@@ -27,18 +25,14 @@ export class ProductItemsSteps {
 
       const itemPage = new ItemPage();
 
-      promises.push(
-          cy.wrap(itemPage.getProductPriceText()).then((productPrice) => {
-            productPrices.push(Number(productPrice));
-          })
-      );
+      totalProductPrice += Number(itemPage.getProductPriceText())
 
-      // Handle optional actions for color and size selection
-      if (clickSpecialColor) {
-        itemPage.clickSpecialLabelColorButton(1);
-      }
       if (clickSpecialSize) {
         itemPage.clickSpecialLabelSizeButton(1);
+      }
+
+      if (clickSpecialColor) {
+        itemPage.clickSpecialLabelColorButton(1);
       }
 
       itemPage.clickAddToCartButton();
@@ -46,6 +40,6 @@ export class ProductItemsSteps {
       Browser.goBack();
     }
 
-    return cy.wrap(promises).then(() => productPrices);
+    return totalProductPrice;
   }
 }

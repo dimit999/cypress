@@ -82,6 +82,11 @@ You can also combine `--headed` and `--browser <name>` for custom runs, e.g.:
 npx cypress run --browser chrome --headed
 ```
 
+## Debugging
+```bash
+  npx cypress open    
+  ```
+
 ## Reports
 After running tests, open the HTML report in `cypress/reports/html`.
 
