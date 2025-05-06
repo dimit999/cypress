@@ -14,6 +14,13 @@ on:
           - 3
           - 4
           - 5
+      browser:
+        description: "Browser to run tests on"
+        required: true
+        default: "chrome"
+        type: choice
+        options:
+          - chrome
 
 jobs:
   set-matrix:
@@ -35,6 +42,7 @@ jobs:
       fail-fast: false
       matrix:
         container: ${{ fromJson(needs.set-matrix.outputs.matrix) }}
+        browser: ${{ github.event.inputs.browser }}
 
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +54,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          browser: ${{ matrix.browser }}
           record: true
           parallel: true
           config-file: cypress.config.ts

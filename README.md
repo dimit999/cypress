@@ -60,10 +60,6 @@ It follows the Page Object Model, supports external data sources, and integrates
   ```
   npm run test:ui
   ```
-- API tests only:
-  ```
-  npm run test:api
-  ```
 - Run tests in headed mode (with a browser window):
   ```
   npm run test:headed
@@ -76,10 +72,6 @@ It follows the Page Object Model, supports external data sources, and integrates
   - **Firefox**:
     ```
     npm run test:firefox
-    ```
-  - **Edge**:
-    ```
-    npm run test:edge
     ```
 
 You can also combine `--headed` and `--browser <name>` for custom runs, e.g.:
@@ -105,6 +97,10 @@ After running tests, open the HTML report in `cypress/reports/html`.
 ## GitHub Actions
 
 CI runs all tests and uploads Mochawesome reports as artifacts.
++ possibility to run tests in parallel.
+
+.yml file contains CYPRESS_RECORD_KEY private key. 
+Register https://cloud.cypress.io/ here for taking this for your project.
 
 - **Pages** are imported using path aliases (e.g. `@pages/RegisterPage`) for clean and maintainable code.
   See `tsconfig.json` for alias setup.
@@ -134,7 +130,7 @@ You can configure Prettier and ESLint by adding `.prettierrc` and `.eslintrc` fi
 - **Page Object Model**: All UI pages and forms are represented as classes, encapsulating selectors and reusable methods for maintainable, scalable tests.
 - **Fixtures & Data-Driven Testing**: Supports reading test data from JSON, CSV, and Excel files, enabling flexible and robust data-driven tests.
 - **Base Page & Base Elements**: Core abstractions (`BasePage`, `BaseElement`) provide shared methods (e.g., waiting for visibility, interacting with elements) to avoid code duplication.
-- - **Element Abstractions**: UI elements are split into dedicated classes (e.g., `Button`, `Input`, `DropDown`) for reusable, maintainable selectors and actions.
+- **Element Abstractions**: UI elements are split into dedicated classes (e.g., `Button`, `Input`, `DropDown`) for reusable, maintainable selectors and actions.
 - **CSS & XPath Selectors**: Framework supports both CSS and XPath selectors for flexible and precise element targeting.
 - **Clean Code Principles**: Forms and step definitions are modular and DRY (Don't Repeat Yourself), ensuring maintainable and readable code.
 - **Parallel & Cross-Browser Testing**: GitHub Actions CI is configured to run tests in parallel across different browsers (e.g., Chrome, Firefox).
