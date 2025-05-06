@@ -2,6 +2,7 @@ import { Label } from '@support/framework/baseElements/Label';
 import { Button } from '@support/framework/baseElements/Button';
 import { NavigationPanel } from '../forms/NavigationPanel';
 import { BasePage } from '@support/framework/basePage/BasePage';
+import {HeaderForm} from "@support/forms/HeaderForm";
 
 export class MyAccountPage extends BasePage {
     // Element selectors (for reuse)
@@ -9,9 +10,6 @@ export class MyAccountPage extends BasePage {
     private welcomeMessage = new Label('.greet.welcome');
     private contactInfo = new Label(this.uniquePageSelector);
     private successMessageLabel = new Label('//div[contains(@class, \'message-success\')]', true);
-    private userSwitcherButton = new Button('(//button[contains(@class, \'switch\')])[1]', true);
-    private userSignOut = new Button('(//div[contains(@class, \'menu\')]//a[contains(@href, \'logout\')])[1]', true);
-
     /**
      * Retrieves the welcome message displayed after a successful login.
      *
@@ -42,22 +40,19 @@ export class MyAccountPage extends BasePage {
     }
 
     /**
-     * Signs the user out of the application by interacting with the user switcher button
-     * and the sign-out option using their XPath selectors.
-     *
-     * @return {void} No return value.
-     */
-    signOut() {
-        this.userSwitcherButton.click();
-        this.userSignOut.click();
-    }
-
-    /**
      * Gets the navigation panel instance for this page.
      */
     getNavigationPanel() {
         return new NavigationPanel();
     }
+
+    /**
+     * Gets the header form instance for this page.
+     */
+    getHeaderForm() {
+        return new HeaderForm();
+    }
+
 
     protected getUniqueElementSelector(): string {
         return this.uniquePageSelector;

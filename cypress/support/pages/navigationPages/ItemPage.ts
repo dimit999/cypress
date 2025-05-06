@@ -29,7 +29,6 @@ export class ItemPage extends BasePage {
     }
 
     clickAddToCartButton() {
-        debugger
         this.addToCartButton.click();
     }
 

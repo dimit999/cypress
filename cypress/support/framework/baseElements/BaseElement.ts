@@ -71,18 +71,20 @@ export abstract class BaseElement {
    * Waits until the element's location is stable (not moving) for a short period.
    * This checks the element's bounding box multiple times to ensure it does not move.
    */
-  waitUntilLocationStable(checks = 3, delay = 100) {
+  waitUntilLocationStable(checks = 3, delay = 100): Cypress.Chainable<void> {
     let prevRect: any;
     let stableCount = 0;
-    const checkStable = (resolve: () => void) => {
-      this.get().then($el => {
+    const self = this;
+
+    function checkStable(resolve: () => void) {
+      self.get().then($el => {
         const rect = $el[0].getBoundingClientRect();
         if (
-          prevRect &&
-          rect.top === prevRect.top &&
-          rect.left === prevRect.left &&
-          rect.width === prevRect.width &&
-          rect.height === prevRect.height
+            prevRect &&
+            rect.top === prevRect.top &&
+            rect.left === prevRect.left &&
+            rect.width === prevRect.width &&
+            rect.height === prevRect.height
         ) {
           stableCount++;
         } else {
@@ -95,9 +97,32 @@ export abstract class BaseElement {
           setTimeout(() => checkStable(resolve), delay);
         }
       });
-    };
-    return new Cypress.Promise((resolve) => {
-      checkStable(resolve);
+    }
+    // The fix: wrap the custom promise in cy.wrap and resolve to undefined
+    return cy.wrap(null).then(() => {
+      return new Cypress.Promise<void>((resolve) => {
+        checkStable(resolve);
+      });
     });
+  }
+
+  /**
+   * Waits until the element's location is stable (not moving) for a short period and is visible.
+   * This checks the element's bounding box multiple times to ensure it does not move.
+   * Returns a Cypress chainable for further chaining.
+   */
+  waitUntilStableAndVisible(
+      timeout = 10000,
+      checks = 3,
+      delay = 100
+  ): Cypress.Chainable<JQuery<HTMLElement>> {
+    return this.waitUntilLocationStable(checks, delay)
+        .then(() => this.get().should('be.visible', { timeout }));
+  }
+  /**
+   * Gets the text content of the element.
+   */
+  getText() {
+    return this.get().invoke('text');
   }
 }

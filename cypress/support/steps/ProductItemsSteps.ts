@@ -39,7 +39,7 @@ export class ProductItemsSteps {
 
       Browser.goBack();
     }
-
+    cy.pause()
     return totalProductPrice;
   }
 }
