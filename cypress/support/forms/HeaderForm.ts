@@ -12,7 +12,7 @@ export class HeaderForm {
     true,
   );
 
-  private basketButton = new Button("//a[contains(@class, 'showcart')]", true);
+  private basketButton = new Button("//div[contains(@class, 'minicart')]//a[contains(@class, 'showcart')]", true);
   private basketItemsLabel = new Label(
     "//a[contains(@class, 'showcart')]//span[contains(@class, 'counter-number')]",
     true,

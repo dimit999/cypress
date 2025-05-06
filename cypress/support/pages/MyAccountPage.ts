@@ -4,6 +4,14 @@ import { BasePage } from "@support/framework/basePage/BasePage";
 import { HeaderForm } from "@support/forms/HeaderForm";
 
 export class MyAccountPage extends BasePage {
+  header: HeaderForm;
+  navigation: NavigationPanel;
+
+  constructor() {
+    super();
+    this.header = new HeaderForm();
+    this.navigation = new NavigationPanel();
+  }
   // Element selectors (for reuse)
   private uniquePageSelector = ".box-information .box-content";
   private welcomeMessage = new Label(".greet.welcome");
@@ -39,20 +47,6 @@ export class MyAccountPage extends BasePage {
    */
   getSuccessMessage() {
     return this.successMessageLabel.get();
-  }
-
-  /**
-   * Gets the navigation panel instance for this page.
-   */
-  getNavigationPanel() {
-    return new NavigationPanel();
-  }
-
-  /**
-   * Gets the header form instance for this page.
-   */
-  getHeaderForm() {
-    return new HeaderForm();
   }
 
   protected getUniqueElementSelector(): string {

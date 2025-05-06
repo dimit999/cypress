@@ -4,6 +4,15 @@ import { HeaderForm } from "@support/forms/HeaderForm";
 import { BasketForm } from "@support/forms/BasketForm";
 
 export class WomenTopsPage extends BasePage {
+  header: HeaderForm;
+  basket: BasketForm;
+
+  constructor() {
+    super();
+    this.header = new HeaderForm();
+    this.basket = new BasketForm();
+  }
+
   // Element selectors (for reuse)
   private uniquePageSelector = "//span[contains(text(), 'Tops')]";
 
@@ -24,17 +33,6 @@ export class WomenTopsPage extends BasePage {
 
   clickSpecialItemAddToCartButtonWithoutHover(index: number) {
     this.getSpecificCardItemImage(index).click();
-  }
-
-  /**
-   * Gets the header form instance for this page.
-   */
-  getHeaderForm() {
-    return new HeaderForm();
-  }
-
-  getBasketForm() {
-    return new BasketForm();
   }
 
   protected getUniqueElementSelector(): string {

@@ -1,4 +1,5 @@
 import "cypress-real-events/support";
+import { ElementState } from './types';
 
 export abstract class BaseElement {
   protected selector: string;
@@ -53,17 +54,10 @@ export abstract class BaseElement {
   }
 
   /**
-   * Asserts the element is visible.
+   * Waits and Asserts the element is visible.
    */
   shouldBeVisible() {
     this.get().should("be.visible");
-  }
-
-  /**
-   * Waits until the element is visible.
-   */
-  waitUntilVisible(timeout = 4000) {
-    this.get().should("be.visible", { timeout });
   }
 
   /**
@@ -71,39 +65,41 @@ export abstract class BaseElement {
    * This checks the element's bounding box multiple times to ensure it does not move.
    */
   waitUntilLocationStable(checks = 3, delay = 100): Cypress.Chainable<void> {
-    let prevRect: any;
+    let prevRect: DOMRect | null = null;
     let stableCount = 0;
-    const self = this;
 
-    function checkStable(resolve: () => void) {
-      self.get().then(($el) => {
+    // Check the element's position at regular intervals
+    const checkStable = (): Cypress.Chainable<void> => {
+      // @ts-expect-error: realHover is provided by cypress-real-events
+      return this.get().then(($el) => {
         const rect = $el[0].getBoundingClientRect();
-        if (
-          prevRect &&
-          rect.top === prevRect.top &&
-          rect.left === prevRect.left &&
-          rect.width === prevRect.width &&
-          rect.height === prevRect.height
-        ) {
+
+        if (prevRect &&
+            rect.top === prevRect.top &&
+            rect.left === prevRect.left &&
+            rect.width === prevRect.width &&
+            rect.height === prevRect.height) {
           stableCount++;
         } else {
-          stableCount = 1;
+          stableCount = 1;  // Reset count if the position changed
         }
+
         prevRect = rect;
+
+        // If the position has been stable for 'checks' iterations, resolve the promise
         if (stableCount >= checks) {
-          resolve();
-        } else {
-          setTimeout(() => checkStable(resolve), delay);
+          return cy.wrap(undefined);
         }
+
+        // If not stable yet, wait for 'delay' ms and then check again
+        return cy.wait(delay).then(() => checkStable()); // Retry the check
       });
     }
-    // The fix: wrap the custom promise in cy.wrap and resolve to undefined
-    return cy.wrap(null).then(() => {
-      return new Cypress.Promise<void>((resolve) => {
-        checkStable(resolve);
-      });
-    });
+
+    // Start the check process
+    return checkStable();
   }
+
 
   /**
    * Waits until the element's location is stable (not moving) for a short period and is visible.
@@ -124,5 +120,24 @@ export abstract class BaseElement {
    */
   getText() {
     return this.get().invoke("text");
+  }
+
+  wait_element_state(state: ElementState, timeout = 4000) {
+    const getElement = () => this.isXpath
+        ? cy.xpath(this.selector, { timeout })
+        : cy.get(this.selector, { timeout });
+
+    switch (state) {
+      case "visible":
+        return getElement().should('be.visible');
+      case "not_visible":
+        return getElement().should('not.be.visible');
+      case "present":
+        return getElement().should('exist');
+      case "absent":
+        return getElement().should('not.exist');
+      default:
+        throw new Error(`Unknown state: ${state}`);
+    }
   }
 }

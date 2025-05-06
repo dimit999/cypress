@@ -1,6 +1,7 @@
 import { ItemPage } from "@support/pages/navigationPages/ItemPage";
 import { WomenTopsPage } from "@support/pages/navigationPages/WomenTopsPage";
 import { Browser } from "@support/framework/browser/Browser";
+import { StringUtils } from "@support/utils/StringUtils";  // Ensure you import StringUtils
 
 export class ProductItemsSteps {
   /**
@@ -11,40 +12,54 @@ export class ProductItemsSteps {
    * @param withMouseHover Whether to use mouse hover
    */
   addProductsToCart(
-    numberOfItems: number,
-    clickSpecialColor: boolean,
-    clickSpecialSize: boolean,
-    withMouseHover: boolean,
+      numberOfItems: number,
+      clickSpecialColor: boolean,
+      clickSpecialSize: boolean,
+      withMouseHover: boolean,
   ) {
     let totalProductPrice = 0;
+    let chain = cy.wrap(undefined as string | undefined);
 
     for (let i = 1; i <= numberOfItems; i++) {
-      const womenTopsPage = new WomenTopsPage();
-      womenTopsPage.waitUntilLoaded();
+      chain = chain.then(() => {
+        const womenTopsPage = new WomenTopsPage();
+        womenTopsPage.waitUntilLoaded();
 
-      if (withMouseHover) {
-        womenTopsPage.clickSpecialItemAddToCartButtonWithHover(i);
-      } else {
-        womenTopsPage.clickSpecialItemAddToCartButtonWithoutHover(i);
-      }
+        if (withMouseHover) {
+          womenTopsPage.clickSpecialItemAddToCartButtonWithHover(i);
+        } else {
+          womenTopsPage.clickSpecialItemAddToCartButtonWithoutHover(i);
+        }
 
-      const itemPage = new ItemPage();
+        const itemPage = new ItemPage();
 
-      totalProductPrice += Number(itemPage.getProductPriceText());
+        return itemPage.getProductPriceText().then((productPriceText) => {
+          const priceText = productPriceText || '';
+          const productPrice = StringUtils.extractNumber(priceText);
 
-      if (clickSpecialSize) {
-        itemPage.clickSpecialLabelSizeButton(1);
-      }
+          cy.log(String(productPrice)); // Optional: log for debugging
 
-      if (clickSpecialColor) {
-        itemPage.clickSpecialLabelColorButton(1);
-      }
+          if (!isNaN(productPrice)) {
+            totalProductPrice += productPrice;
+          } else {
+            console.error("Invalid price found:", priceText);
+          }
 
-      itemPage.clickAddToCartButton();
+          if (clickSpecialSize) {
+            itemPage.clickSpecialLabelSizeButton(1);
+          }
+          if (clickSpecialColor) {
+            itemPage.clickSpecialLabelColorButton(1);
+          }
 
-      Browser.goBack();
+          itemPage.clickAddToCartButton();
+          itemPage.waitAddToCartButtonVisible()
+          Browser.goBack();
+        });
+      });
     }
-    cy.pause();
-    return totalProductPrice;
+
+    // At the end, yield the total price
+    return chain.then(() => totalProductPrice);
   }
 }

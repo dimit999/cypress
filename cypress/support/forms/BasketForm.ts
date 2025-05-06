@@ -13,7 +13,7 @@ export class BasketForm {
     true,
   );
   private checkoutButton = new Button(
-    "//button[contains(@id, 'checkout')]",
+    "//button[contains(@data-role, 'checkout')]",
     true,
   );
 
@@ -33,6 +33,7 @@ export class BasketForm {
   }
 
   clickCheckoutButton() {
+    this.checkoutButton.waitUntilStableAndVisible()
     this.checkoutButton.click();
   }
 }

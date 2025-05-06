@@ -18,14 +18,20 @@ export class ItemPage extends BasePage {
   );
 
   getProductPriceText() {
+    this.getProductPrice.waitUntilStableAndVisible()
     return this.getProductPrice.getAttribute("data-price-amount");
   }
+
+  waitAddToCartButtonVisible() {
+    this.addToCartButton.wait_element_state('visible')
+  }
+
   clickSpecialLabelSizeButton(index: number) {
     const labelSizeButton = new Button(
       `(//div[contains(@id, 'label-size')])[${index}]`,
       true,
     );
-    labelSizeButton.waitUntilVisible();
+    labelSizeButton.shouldBeVisible();
     labelSizeButton.click();
   }
 
@@ -34,7 +40,7 @@ export class ItemPage extends BasePage {
       `(//div[contains(@id, 'label-color')])[${index}]`,
       true,
     );
-    labelColorButton.waitUntilVisible();
+    labelColorButton.shouldBeVisible();
     labelColorButton.click();
   }
 
