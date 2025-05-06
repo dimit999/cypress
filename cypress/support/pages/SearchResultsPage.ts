@@ -2,7 +2,7 @@ import { BasePage } from "@support/framework/basePage/BasePage";
 import { HeaderForm } from "@support/forms/HeaderForm";
 import { BasketForm } from "@support/forms/BasketForm";
 import { ItemForm } from "@support/forms/ItemForm";
-import {Label} from "@support/framework/baseElements/Label";
+import { Label } from "@support/framework/baseElements/Label";
 
 export class SearchResultsPage extends BasePage {
   header: HeaderForm;
@@ -20,8 +20,8 @@ export class SearchResultsPage extends BasePage {
   private uniquePageSelector = "//span[contains(text(), 'Search results')]";
 
   private allItemsText = new Label(
-      "//a[contains(@class, 'product-item-link')]",
-      true,
+    "//a[contains(@class, 'product-item-link')]",
+    true,
   );
 
   getAllItemsText(): Cypress.Chainable<string[]> {

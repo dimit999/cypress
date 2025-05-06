@@ -1,0 +1,4 @@
+cypress.config.ts
+cypress.config.*
+commands.ts
+*.config.ts
