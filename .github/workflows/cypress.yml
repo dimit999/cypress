@@ -28,14 +28,11 @@ on:
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
-    env:
-      USER_EMAIL: ${{ secrets.USER_EMAIL }}
-      USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
     strategy:
       fail-fast: false
       matrix:
-        containers: [${{ github.event.inputs.containers }}]  # Use the parameter from the manual trigger
-        browser: [${{ github.event.inputs.browser }}]          # Use the parameter from the manual trigger
+        containers: [${{ github.event.inputs.containers }}]  # Corrected matrix syntax for containers
+        browser: [${{ github.event.inputs.browser }}]          # Corrected matrix syntax for browser
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
