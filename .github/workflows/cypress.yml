@@ -42,7 +42,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Cypress run
-        # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
         with:
           browser: ${{ env.BROWSER }}
@@ -51,10 +50,10 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check mochawesome reports before merging
+      - name: Check generated reports before merging
         run: |
-          echo "Checking generated reports..."
-          ls -l cypress/reports/*.json
+          echo "Listing files in cypress/reports"
+          ls -l cypress/reports/
           cat cypress/reports/*.json || echo "No JSON reports generated!"
       - name: Generate HTML report
         run: npm run report
