@@ -64,14 +64,10 @@ It follows the Page Object Model, supports external data sources, and integrates
   ```
   npm run test:headed
   ```
-- Run tests in a specific browser:
+- Run tests in a specific browser, for example Chrome:
   - **Chrome**:
     ```
     npm run test:chrome
-    ```
-  - **Firefox**:
-    ```
-    npm run test:firefox
     ```
 
 You can also combine `--headed` and `--browser <name>` for custom runs, e.g.:
@@ -105,6 +101,12 @@ Register https://cloud.cypress.io/ here for taking this for your project.
 - **Pages** are imported using path aliases (e.g. `@pages/RegisterPage`) for clean and maintainable code.
   See `tsconfig.json` for alias setup.
 - **Test Reports** are stored in `cypress/reports/` (auto-created).
+
+For running tests on CI:
+1. Go to https://github.com/dimit999/cypress/actions
+2. Click 'Cypress Tests' -> Run workflow
+3. Select qty of containers -> Run workflow
+4. Wait results and report
 
 ## Code Style & Linting
 
