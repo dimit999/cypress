@@ -53,9 +53,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Check generated reports before merging
         run: |
-          echo "Listing files in cypress/reports/.jsons"
-          ls -l cypress/reports/.jsons || echo "No .jsons directory!"
-          cat cypress/reports/.jsons/*.json || echo "No JSON reports generated!"
+          echo "Listing files in cypress/cypress/reports/.jsons"
+          ls -l cypress/cypress/reports/.jsons || echo "No .jsons directory!"
+          cat cypress/cypress/reports/.jsons/*.json || echo "No JSON reports generated!"
       - name: Generate HTML report
         run: npm run report
       - name: Upload Mochawesome HTML report
