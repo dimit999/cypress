@@ -30,31 +30,37 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      matrix:
+        container: [1, 2] # ⬅️ будет перезаписано ниже при workflow_dispatch
     env:
       BROWSER: ${{ github.event.inputs.browser }}
-      CONTAINERS: ${{ github.event.inputs.containers }}
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Install dependencies
         run: npm ci
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           browser: ${{ env.BROWSER }}
           record: true
           parallel: true
+          group: 'CI Tests'
           config-file: cypress.config.ts
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload Mochawesome HTML report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report
           path: cypress/reports/index.html
-        continue-on-error: true # Ensure this step runs even if previous steps fail
+        continue-on-error: true
