@@ -31,8 +31,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [${{ github.event.inputs.containers }}]  # Corrected matrix syntax for containers
-        browser: [${{ github.event.inputs.browser }}]          # Corrected matrix syntax for browser
+        browser: [${{ github.event.inputs.browser }}]
+        containers: [${{ github.event.inputs.containers }}]
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
