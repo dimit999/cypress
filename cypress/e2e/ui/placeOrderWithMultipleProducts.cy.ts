@@ -23,6 +23,7 @@ describe('Place order with multiple products', () => {
           womenTopsPage.basket.getTotalBasketItemsQty().then((qty) => {
               expect(qty).to.equal(2, "Not 2 products added to basket");
           });
+          debugger
           cy.log(`Total products price: ${productsPrice}`);
           womenTopsPage.basket.getTotalBasketAmount().then((basketProductsPrice) => {
               cy.log("Basket Products Price:", basketProductsPrice);

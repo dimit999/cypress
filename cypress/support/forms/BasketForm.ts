@@ -13,7 +13,7 @@ export class BasketForm {
     true,
   );
   private checkoutButton = new Button(
-    "//button[contains(@data-role, 'checkout')]",
+    "//button[contains(@id, 'checkout')]",
     true,
   );
 
