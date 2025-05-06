@@ -1,10 +1,29 @@
 name: Cypress Tests
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
+    branches: [main]  # Run on pull request to the main branch
+  workflow_dispatch:   # Allows manual triggering of the workflow
+    inputs:
+      browser:
+        description: 'Browser to run tests on'
+        required: true
+        default: 'chrome'
+        type: choice
+        options:
+          - chrome
+          - firefox
+      containers:
+        description: 'Number of containers to use'
+        required: true
+        default: '1'
+        type: choice
+        options:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
 
 jobs:
   cypress-run:
@@ -15,8 +34,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [1, 2, 3, 4, 5]
-        browser: [chrome, firefox, edge]
+        containers: [${{ github.event.inputs.containers }}]  # Use the parameter from the manual trigger
+        browser: [${{ github.event.inputs.browser }}]          # Use the parameter from the manual trigger
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
