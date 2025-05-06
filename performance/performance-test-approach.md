@@ -53,6 +53,7 @@
 - **Locust / Lighthouse**
     - **Locust**: A performance testing tool to simulate **user behavior** for load testing and scalability.
     - **Lighthouse**: A tool for **auditing web performance**, focusing on **page load**, **TTFB**, **SEO**, and **accessibility**. Ideal for testing checkout flows and web pages.
+    - Example of Lighthouse report https://pagespeed.web.dev/analysis/https-magento-softwaretestingboard-com/mqvwtmytjy?form_factor=desktop&category=performance&category=accessibility&category=best-practices&category=seo&hl=en-US&utm_source=lh-chrome-ext for such site.
 
 - **Monitoring Tools**
     - **Grafana**: Used with **Prometheus** for **real-time monitoring** of infrastructure and application performance.
