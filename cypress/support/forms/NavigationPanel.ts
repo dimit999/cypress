@@ -1,9 +1,15 @@
-import { Label } from '@support/framework/baseElements/Label';
+import { Label } from "@support/framework/baseElements/Label";
 
 export class NavigationPanel {
   // Selectors for navigation tabs
-  private womenTab = new Label('//a[contains(@role, \'menuitem\')]//span[contains(text(), \'Women\')]', true);
-  private womenTopsTab = new Label('//ul[contains(@style, \'block\')]//span[contains(text(), \'Tops\')]', true);
+  private womenTab = new Label(
+    "//a[contains(@role, 'menuitem')]//span[contains(text(), 'Women')]",
+    true,
+  );
+  private womenTopsTab = new Label(
+    "//ul[contains(@style, 'block')]//span[contains(text(), 'Tops')]",
+    true,
+  );
 
   /**
    * Clicks the Women tab in the navigation panel.

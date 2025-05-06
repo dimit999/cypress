@@ -1,16 +1,15 @@
-import { Input } from '@support/framework/baseElements/Input';
-import { Button } from '@support/framework/baseElements/Button';
-import { BasePage } from '@support/framework/basePage/BasePage';
-import {Label} from "@support/framework/baseElements/Label";
+import { Input } from "@support/framework/baseElements/Input";
+import { Button } from "@support/framework/baseElements/Button";
+import { BasePage } from "@support/framework/basePage/BasePage";
 
 export class RegisterPage extends BasePage {
   // Element selectors (for reuse)
-  private uniquePageSelector = '#lastname';
-  private firstNameInput = new Input('#firstname');
+  private uniquePageSelector = "#lastname";
+  private firstNameInput = new Input("#firstname");
   private lastNameInput = new Input(this.uniquePageSelector);
-  private emailInput = new Input('#email_address');
-  private passwordInput = new Input('#password');
-  private confirmPasswordInput = new Input('#password-confirmation');
+  private emailInput = new Input("#email_address");
+  private passwordInput = new Input("#password");
+  private confirmPasswordInput = new Input("#password-confirmation");
   private submitButton = new Button("button[title='Create an Account']");
 
   /**
@@ -19,7 +18,7 @@ export class RegisterPage extends BasePage {
    * @return {void} This method does not return a value.
    */
   visit() {
-    super.visit('/customer/account/create/');
+    super.visit("/customer/account/create/");
   }
 
   /**

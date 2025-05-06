@@ -1,14 +1,14 @@
-import { Input } from '@support/framework/baseElements/Input';
-import { Button } from '@support/framework/baseElements/Button';
-import { BasePage } from '@support/framework/basePage/BasePage';
+import { Input } from "@support/framework/baseElements/Input";
+import { Button } from "@support/framework/baseElements/Button";
+import { BasePage } from "@support/framework/basePage/BasePage";
 
 export class LoginPage extends BasePage {
   // Element selectors (for reuse)
-  private uniquePageSelector = "//div[contains(@class, 'container')]//span[text()='Sign In']";
-  private emailInput = new Input('#email');
-  private passwordInput = new Input('#pass');
-  private signInButton = new Button(this.uniquePageSelector,
-      true);
+  private uniquePageSelector =
+    "//div[contains(@class, 'container')]//span[text()='Sign In']";
+  private emailInput = new Input("#email");
+  private passwordInput = new Input("#pass");
+  private signInButton = new Button(this.uniquePageSelector, true);
 
   /**
    * Navigates the browser to the customer login page.
@@ -16,7 +16,7 @@ export class LoginPage extends BasePage {
    * @return {void} This method does not return a value.
    */
   visit() {
-    super.visit('/customer/account/login/');
+    super.visit("/customer/account/login/");
   }
 
   /**

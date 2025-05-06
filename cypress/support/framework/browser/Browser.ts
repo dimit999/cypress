@@ -3,14 +3,14 @@ export class Browser {
    * Navigates back in browser history.
    */
   static goBack() {
-    cy.go('back');
+    cy.go("back");
   }
 
   /**
    * Navigates forward in browser history.
    */
   static goForward() {
-    cy.go('forward');
+    cy.go("forward");
   }
 
   /**

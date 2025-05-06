@@ -10,7 +10,12 @@ export class ProductItemsSteps {
    * @param clickSpecialSize Whether to click the size button
    * @param withMouseHover Whether to use mouse hover
    */
-  addProductsToCart(numberOfItems: number, clickSpecialColor: boolean, clickSpecialSize: boolean, withMouseHover: boolean) {
+  addProductsToCart(
+    numberOfItems: number,
+    clickSpecialColor: boolean,
+    clickSpecialSize: boolean,
+    withMouseHover: boolean,
+  ) {
     let totalProductPrice = 0;
 
     for (let i = 1; i <= numberOfItems; i++) {
@@ -25,7 +30,7 @@ export class ProductItemsSteps {
 
       const itemPage = new ItemPage();
 
-      totalProductPrice += Number(itemPage.getProductPriceText())
+      totalProductPrice += Number(itemPage.getProductPriceText());
 
       if (clickSpecialSize) {
         itemPage.clickSpecialLabelSizeButton(1);
@@ -39,7 +44,7 @@ export class ProductItemsSteps {
 
       Browser.goBack();
     }
-    cy.pause()
+    cy.pause();
     return totalProductPrice;
   }
 }

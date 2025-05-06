@@ -1,45 +1,47 @@
-import { Label } from '@support/framework/baseElements/Label';
-import { Button } from '@support/framework/baseElements/Button';
-import { NavigationPanel } from '../../forms/NavigationPanel';
-import { BasePage } from '@support/framework/basePage/BasePage';
-import {Input} from "@support/framework/baseElements/Input";
-import {HeaderForm} from "@support/forms/HeaderForm";
-import {BasketForm} from "@support/forms/BasketForm";
+import { Label } from "@support/framework/baseElements/Label";
+import { BasePage } from "@support/framework/basePage/BasePage";
+import { HeaderForm } from "@support/forms/HeaderForm";
+import { BasketForm } from "@support/forms/BasketForm";
 
 export class WomenTopsPage extends BasePage {
-    // Element selectors (for reuse)
-    private uniquePageSelector = "//span[contains(text(), 'Tops')]";
+  // Element selectors (for reuse)
+  private uniquePageSelector = "//span[contains(text(), 'Tops')]";
 
-    getSpecificCardItemImage(index: number) {
-        return new Label(`(//div[contains(@class, 'product-item-info')]//span[contains(@class, 'product-image-wrapper')])[${index}]`, true);
-    }
+  getSpecificCardItemImage(index: number) {
+    return new Label(
+      `(//div[contains(@class, 'product-item-info')]//span[contains(@class, 'product-image-wrapper')])[${index}]`,
+      true,
+    );
+  }
 
-    clickSpecialItemAddToCartButtonWithHover(index: number) {
-        new Label(`(//div[contains(@class, 'product-item-info')])[${index}]`, true).hover();
-        this.getSpecificCardItemImage(index).click();
-    }
+  clickSpecialItemAddToCartButtonWithHover(index: number) {
+    new Label(
+      `(//div[contains(@class, 'product-item-info')])[${index}]`,
+      true,
+    ).hover();
+    this.getSpecificCardItemImage(index).click();
+  }
 
-    clickSpecialItemAddToCartButtonWithoutHover(index: number) {
-        this.getSpecificCardItemImage(index).click()
-    }
+  clickSpecialItemAddToCartButtonWithoutHover(index: number) {
+    this.getSpecificCardItemImage(index).click();
+  }
 
-    /**
-     * Gets the header form instance for this page.
-     */
-    getHeaderForm() {
-        return new HeaderForm();
-    }
+  /**
+   * Gets the header form instance for this page.
+   */
+  getHeaderForm() {
+    return new HeaderForm();
+  }
 
-    getBasketForm() {
-        return new BasketForm();
-    }
+  getBasketForm() {
+    return new BasketForm();
+  }
 
-    protected getUniqueElementSelector(): string {
-        return this.uniquePageSelector;
-    }
+  protected getUniqueElementSelector(): string {
+    return this.uniquePageSelector;
+  }
 
-
-    protected getUniqueElementIsXpath(): boolean {
-        return true;
-    }
+  protected getUniqueElementIsXpath(): boolean {
+    return true;
+  }
 }

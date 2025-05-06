@@ -1,4 +1,4 @@
-import { BaseElement } from './BaseElement';
+import { BaseElement } from "./BaseElement";
 
 export class Button extends BaseElement {
   /**
@@ -12,6 +12,6 @@ export class Button extends BaseElement {
    * Clicks a button by its text content (static, CSS only).
    */
   static clickByText(text: string) {
-    cy.contains('button', text).click();
+    cy.contains("button", text).click();
   }
 }

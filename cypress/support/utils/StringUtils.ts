@@ -5,7 +5,7 @@ export class StringUtils {
    * @param str The input string
    */
   static extractNumber(str: string): number {
-    const match = str.replace(/[^\d.]/g, '');
+    const match = str.replace(/[^\d.]/g, "");
     return match ? parseFloat(match) : NaN;
   }
 
@@ -14,6 +14,6 @@ export class StringUtils {
    * @param str The input string
    */
   static extractDigits(str: string): string {
-    return str.replace(/\D/g, '');
+    return str.replace(/\D/g, "");
   }
 }

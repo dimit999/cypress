@@ -5,7 +5,10 @@ declare namespace Cypress {
      * @param firstName
      * @param lastName
      */
-    registerUser(firstName?: string, lastName?: string): Chainable<{
+    registerUser(
+      firstName?: string,
+      lastName?: string,
+    ): Chainable<{
       email: string;
       password: string;
       firstName: string;

@@ -13,7 +13,7 @@ export interface RegisteredUser {
  *   const { getUser } = setupUserRegistration();
  *   // in test: getUser().email
  */
-export function setupUserRegistration(firstName = 'Test', lastName = 'User') {
+export function setupUserRegistration(firstName = "Test", lastName = "User") {
   let user: RegisteredUser;
 
   beforeEach(() => {

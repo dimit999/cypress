@@ -1,5 +1,4 @@
-// @ts-ignore
-import 'cypress-real-events/support';
+import "cypress-real-events/support";
 
 export abstract class BaseElement {
   protected selector: string;
@@ -29,11 +28,11 @@ export abstract class BaseElement {
    */
   hover() {
     // @ts-expect-error: realHover is provided by cypress-real-events
-    if (typeof this.get().realHover === 'function') {
-      // @ts-ignore
-      this.get().should('be.visible').realHover();
+    if (typeof this.get().realHover === "function") {
+      // @ts-expect-error: realHover is provided by cypress-real-events
+      this.get().should("be.visible").realHover();
     } else {
-      this.get().should('be.visible').trigger('mouseover', { force: true });
+      this.get().should("be.visible").trigger("mouseover", { force: true });
     }
   }
 
@@ -43,7 +42,7 @@ export abstract class BaseElement {
    * @returns Cypress.Chainable with attribute value
    */
   getAttribute(attr: string) {
-    return this.get().invoke('attr', attr);
+    return this.get().invoke("attr", attr);
   }
 
   /**
@@ -57,14 +56,14 @@ export abstract class BaseElement {
    * Asserts the element is visible.
    */
   shouldBeVisible() {
-    this.get().should('be.visible');
+    this.get().should("be.visible");
   }
 
   /**
    * Waits until the element is visible.
    */
   waitUntilVisible(timeout = 4000) {
-    this.get().should('be.visible', { timeout });
+    this.get().should("be.visible", { timeout });
   }
 
   /**
@@ -77,14 +76,14 @@ export abstract class BaseElement {
     const self = this;
 
     function checkStable(resolve: () => void) {
-      self.get().then($el => {
+      self.get().then(($el) => {
         const rect = $el[0].getBoundingClientRect();
         if (
-            prevRect &&
-            rect.top === prevRect.top &&
-            rect.left === prevRect.left &&
-            rect.width === prevRect.width &&
-            rect.height === prevRect.height
+          prevRect &&
+          rect.top === prevRect.top &&
+          rect.left === prevRect.left &&
+          rect.width === prevRect.width &&
+          rect.height === prevRect.height
         ) {
           stableCount++;
         } else {
@@ -112,17 +111,18 @@ export abstract class BaseElement {
    * Returns a Cypress chainable for further chaining.
    */
   waitUntilStableAndVisible(
-      timeout = 10000,
-      checks = 3,
-      delay = 100
+    timeout = 10000,
+    checks = 3,
+    delay = 100,
   ): Cypress.Chainable<JQuery<HTMLElement>> {
-    return this.waitUntilLocationStable(checks, delay)
-        .then(() => this.get().should('be.visible', { timeout }));
+    return this.waitUntilLocationStable(checks, delay).then(() =>
+      this.get().should("be.visible", { timeout }),
+    );
   }
   /**
    * Gets the text content of the element.
    */
   getText() {
-    return this.get().invoke('text');
+    return this.get().invoke("text");
   }
 }

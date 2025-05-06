@@ -4,8 +4,5 @@
     { "name": "Radiant Tee", "qty": 2 },
     { "name": "Breathe-Easy Tank", "qty": 1 }
   ],
-  "searchTerms": [
-    "jacket",
-    "pants"
-  ]
+  "searchTerms": ["jacket", "pants"]
 }

@@ -6,6 +6,7 @@ This repository contains a comprehensive set of automated tests for the **Petsto
 - **GET /pet/{petId}**: Fetches details of a pet based on the provided Pet ID.
 
 ## Table of Contents
+
 1. [Overview](#1-overview)
 2. [Postman Collection Details](#2-postman-collection-details)
 3. [Test Scenarios](#3-test-scenarios)
@@ -13,6 +14,7 @@ This repository contains a comprehensive set of automated tests for the **Petsto
 5. [Tests](#5-tests)
 6. [Postman Collection Export](#6-postman-collection-export)
 7. [Performance: run Newman and check results](#7-performance-run-newman-and-check-results)
+
 ---
 
 ### 1. Overview
@@ -66,11 +68,13 @@ Each test scenario corresponds to an endpoint defined in the collection. The tes
 ### 4. How to Use
 
 1. **Import the Collection into Postman**:
+
    - Download the exported collection file.
    - Open Postman and go to the "Import" button.
    - Choose "File" and select the downloaded collection file to import.
 
 2. **Set Up Environment** (Optional):
+
    - The collection can be executed with or without an environment. However, if you want to use variables like `{{petId}}`, you can create an environment and set those variables.
 
 3. **Run the Collection**:
@@ -85,10 +89,12 @@ Each test scenario corresponds to an endpoint defined in the collection. The tes
 This collection includes various tests for different scenarios:
 
 1. **Valid Requests**:
+
    - Adding a valid pet (`POST /pet`)
    - Fetching the details of a valid pet (`GET /pet/{petId}`)
 
 2. **Invalid Requests**:
+
    - Missing required fields in the request body (`POST /pet`)
    - Sending incorrect data types for the fields (`POST /pet`)
    - Fetching a pet with a non-existent or invalid ID (`GET /pet/{petId}`)
@@ -98,10 +104,12 @@ This collection includes various tests for different scenarios:
    - SQL injection and XSS attacks in the request body (`POST /pet`).
 
 ## Notes:
+
 - Enough cases return 500 error because from BackEnd not validation for valid format.
 - No validation for required fields (that should be by logic).
 - Positive POST api requests return "9223372036854776000" petId always,
   and for Positive GET requests it returns always ""message": "java.lang.NumberFormatException""
+
 ---
 
 ### 6. Postman Collection Export
@@ -116,14 +124,20 @@ The collection has been exported and can be imported into Postman. You can find 
 This README file describes the automated test scenarios for the Petstore API. It covers positive, negative, and edge cases and can be used to validate the functionality of the Petstore API endpoints.
 
 ### 7. Performance: run Newman and check results
+
 1. Install Newman:
    ```bash
    npm install -g newman
+   ```
 2. Install report library:
+
    ```bash
    npm install newman-reporter-html
 
+   ```
+
 3. Run Postman tests:
+
    ```
    newman run Petstore_API_Collection.postman_collection.json -r html --reporter-html-export result.html
    ```

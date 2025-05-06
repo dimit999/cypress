@@ -1,14 +1,21 @@
-import { Label } from '@support/framework/baseElements/Label';
-import {Button} from "@support/framework/baseElements/Button";
-import {StringUtils} from "@support/utils/StringUtils";
+import { Label } from "@support/framework/baseElements/Label";
+import { Button } from "@support/framework/baseElements/Button";
+import { StringUtils } from "@support/utils/StringUtils";
 
 export class BasketForm {
   // Selectors for navigation tabs
-  private totalBasketAmountLabel = new Label('//div[contains(@class, \'amount\')]//span[contains(@class, \'price-wrapper\')]', true);
-  private totalBasketItemsCountLabel = new Label('//div[contains(@class, \'items-total\')]//span[contains(@class, \'count\')]', true);
-  private checkoutButton = new Button('//button[contains(@id, \'checkout\')]', true);
-
-
+  private totalBasketAmountLabel = new Label(
+    "//div[contains(@class, 'amount')]//span[contains(@class, 'price-wrapper')]",
+    true,
+  );
+  private totalBasketItemsCountLabel = new Label(
+    "//div[contains(@class, 'items-total')]//span[contains(@class, 'count')]",
+    true,
+  );
+  private checkoutButton = new Button(
+    "//button[contains(@id, 'checkout')]",
+    true,
+  );
 
   /**
    * Gets the total basket amount, extracting the number from the label text.
@@ -26,7 +33,6 @@ export class BasketForm {
   }
 
   clickCheckoutButton() {
-    this.checkoutButton.click()
+    this.checkoutButton.click();
   }
-
 }

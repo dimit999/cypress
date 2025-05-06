@@ -14,7 +14,7 @@ export abstract class BasePage {
    * Waits until the page is fully loaded (document ready).
    */
   waitUntilLoaded(timeout = 10000) {
-    cy.document({ timeout }).should('have.property', 'readyState', 'complete');
+    cy.document({ timeout }).should("have.property", "readyState", "complete");
   }
 
   /**
@@ -34,14 +34,16 @@ export abstract class BasePage {
    */
   isOpened(timeout = 10000) {
     const selector = this.getUniqueElementSelector();
-    const isXpath = this.getUniqueElementIsXpath ? this.getUniqueElementIsXpath() : false;
+    const isXpath = this.getUniqueElementIsXpath
+      ? this.getUniqueElementIsXpath()
+      : false;
     if (!selector) {
-      throw new Error('Unique element selector is not defined for this page.');
+      throw new Error("Unique element selector is not defined for this page.");
     }
     if (isXpath) {
-      cy.xpath(selector, { timeout }).should('be.visible');
+      cy.xpath(selector, { timeout }).should("be.visible");
     } else {
-      cy.get(selector, { timeout }).should('be.visible');
+      cy.get(selector, { timeout }).should("be.visible");
     }
   }
 
