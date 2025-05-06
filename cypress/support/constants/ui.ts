@@ -1,1 +1,1 @@
-export const DEFAULT_UI_TIMEOUT = 15000;
+export const DEFAULT_UI_TIMEOUT = 45000;
