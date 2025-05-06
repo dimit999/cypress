@@ -14,7 +14,7 @@
 
 ### Key Scenarios
 
-- Multiple users adding products to cart simultaneously.
+- Multiple users add products to the cart simultaneously.
 - Concurrent users proceeding through checkout and placing orders.
 - Users updating shipping/billing addresses during checkout.
 - Mix of guest and registered user checkouts.
@@ -39,6 +39,24 @@
 - 95% of orders placed within 2 seconds.
 - Error rate < 1%.
 - No resource exhaustion or system crashes.
+
+### Tools
+
+- **JMeter / Gatling**  
+  For **load testing** and **performance testing** of APIs, websites, and databases under stress.
+
+- **Postman + Newman**  
+  As I see from your available domains (files are attached), you use Postman, then my advice is to use **Newman** for running Postman collections as part of your automation pipeline.
+- **Cypress**  
+  For **web performance benchmarks** like page load times, **TTFB (Time to First Byte)**, and **front-end response times**. Use **Cypress** to simulate real user interactions with your Magento store during testing.
+
+- **Locust / Lighthouse**
+    - **Locust**: A performance testing tool to simulate **user behavior** for load testing and scalability.
+    - **Lighthouse**: A tool for **auditing web performance**, focusing on **page load**, **TTFB**, **SEO**, and **accessibility**. Ideal for testing checkout flows and web pages.
+
+- **Monitoring Tools**
+    - **Grafana**: Used with **Prometheus** for **real-time monitoring** of infrastructure and application performance.
+    - **Datadog**: A tool for **monitoring infrastructure and applications**, useful for tracking **CPU**, **memory usage**, **response times**, and **error rates** during stress testing.
 
 ---
 
