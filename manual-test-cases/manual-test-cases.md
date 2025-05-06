@@ -34,7 +34,7 @@
 
 # README: Manual Test Case Coverage
 
-This project includes manual test cases for the main e-commerce flows on https://magento.so4waretes6ngboard.com/:
+This project includes manual test cases for the main e-commerce flows on https://magento.softwaretestingboard.com/:
 
 1. **User Registration and Login:** Ensures users can create accounts and log in.
 2. **Product Search and Add to Cart:** Verifies users can find products and add them to their cart.
