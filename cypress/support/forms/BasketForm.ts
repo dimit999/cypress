@@ -33,7 +33,7 @@ export class BasketForm {
   }
 
   clickCheckoutButton() {
-    this.checkoutButton.waitUntilStableAndVisible()
+    this.checkoutButton.waitUntilStableAndVisible();
     this.checkoutButton.click();
   }
 }

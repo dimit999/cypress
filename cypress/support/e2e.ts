@@ -26,6 +26,15 @@ Cypress.on("uncaught:exception", (err) => {
   ) {
     return false;
   }
+  // Ignore errors about reading 'setOptions' of undefined
+  if (
+    err.message &&
+    err.message.includes(
+      "Cannot read properties of undefined (reading 'setOptions')",
+    )
+  ) {
+    return false;
+  }
   // Let all other errors fail the test
   return true;
 });

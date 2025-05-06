@@ -11,19 +11,28 @@ export class ItemPage extends BasePage {
       "//a[contains(@data-action, 'add-to-wishlist')]",
     true,
   );
-  private getProductPrice = new Label(
+  private itemPriceLabel = new Label(
     "//div[contains(@class, 'product-info')]" +
       "//span[@data-price-type='finalPrice']",
     true,
   );
+  private itemTitleLabel = new Label(
+    "//div[contains(@class, 'product-info')]//span[contains(@data-ui-id, 'title')]",
+    true,
+  );
+
+  itemTitle() {
+    this.itemTitleLabel.scrollIntoView();
+    this.itemTitleLabel.click();
+  }
 
   getProductPriceText() {
-    this.getProductPrice.waitUntilStableAndVisible()
-    return this.getProductPrice.getAttribute("data-price-amount");
+    this.itemPriceLabel.waitElementState("visible");
+    return this.itemPriceLabel.getAttribute("data-price-amount");
   }
 
   waitAddToCartButtonVisible() {
-    this.addToCartButton.waitElementState('visible')
+    this.addToCartButton.waitElementState("visible");
   }
 
   clickSpecialLabelSizeButton(index: number) {
@@ -31,8 +40,14 @@ export class ItemPage extends BasePage {
       `(//div[contains(@id, 'label-size')])[${index}]`,
       true,
     );
+    const labelSizeSelectedLabel = new Label(
+      `(//div[contains(@class, 'text selected')])[${index}]`,
+      true,
+    );
     labelSizeButton.shouldBeVisible();
+    labelSizeButton.waitUntilLocationStable();
     labelSizeButton.click();
+    labelSizeSelectedLabel.shouldBeVisible();
   }
 
   clickSpecialLabelColorButton(index: number) {
@@ -40,15 +55,27 @@ export class ItemPage extends BasePage {
       `(//div[contains(@id, 'label-color')])[${index}]`,
       true,
     );
+    const labelColorSelectedLabel = new Label(
+      `(//div[contains(@class, 'color selected')])[${index}]`,
+      true,
+    );
     labelColorButton.shouldBeVisible();
+    labelColorButton.waitUntilLocationStable();
     labelColorButton.click();
+    labelColorSelectedLabel.shouldBeVisible();
+  }
+
+  waitUntilAddToCardEnabled() {
+    this.addToCartButton.waitUntilAttributeAbsent("disabled");
   }
 
   clickAddToCartButton() {
+    this.waitUntilAddToCardEnabled();
     this.addToCartButton.click();
   }
 
   clickAddToWishlistButton() {
+    this.addToWishlistButton.waitElementState("visible");
     this.addToWishlistButton.click();
   }
 

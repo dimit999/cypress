@@ -1,3 +1,5 @@
+import { DEFAULT_UI_TIMEOUT } from "@support/constants/ui";
+
 export abstract class BasePage {
   constructor() {}
 
@@ -13,7 +15,7 @@ export abstract class BasePage {
   /**
    * Waits until the page is fully loaded (document ready).
    */
-  waitUntilLoaded(timeout = 10000) {
+  waitUntilLoaded(timeout = DEFAULT_UI_TIMEOUT) {
     cy.document({ timeout }).should("have.property", "readyState", "complete");
   }
 

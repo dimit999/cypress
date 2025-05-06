@@ -19,4 +19,21 @@ export class Browser {
   static reload() {
     cy.reload();
   }
+
+  /**
+   * Scrolls to the top of the page or scrollable container.
+   */
+  static scrollToTop(selector?: string) {
+    if (selector) {
+      cy.get(selector).scrollTo("top");
+    } else {
+      cy.window().then((win) => {
+        win.scrollTo(0, 0);
+      });
+    }
+  }
+
+  static refresh() {
+    cy.reload();
+  }
 }

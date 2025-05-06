@@ -22,7 +22,6 @@ export default defineConfig({
   },
 });
 
-
 // import { defineConfig } from "cypress";
 //
 // export default defineConfig({

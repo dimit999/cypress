@@ -3,7 +3,7 @@ import { HeaderForm } from "@support/forms/HeaderForm";
 import { BasketForm } from "@support/forms/BasketForm";
 import { ItemForm } from "@support/forms/ItemForm";
 
-export class WomenTopsPage extends BasePage {
+export class GearBagsPage extends BasePage {
   header: HeaderForm;
   basket: BasketForm;
   item: ItemForm;
@@ -16,7 +16,7 @@ export class WomenTopsPage extends BasePage {
   }
 
   // Element selectors (for reuse)
-  private uniquePageSelector = "//span[contains(text(), 'Tops')]";
+  private uniquePageSelector = "//span[contains(text(), 'Bags')]";
 
   protected getUniqueElementSelector(): string {
     return this.uniquePageSelector;

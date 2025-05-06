@@ -1,9 +1,6 @@
-import { Input } from "@support/framework/baseElements/Input";
-import { Button } from "@support/framework/baseElements/Button";
 import { BasePage } from "@support/framework/basePage/BasePage";
-import {DropDown} from "@support/framework/baseElements/DropDown";
-import {Label} from "@support/framework/baseElements/Label";
-import {StringUtils} from "@support/utils/StringUtils";
+import { Label } from "@support/framework/baseElements/Label";
+import { StringUtils } from "@support/utils/StringUtils";
 
 export class PlacedOrderPage extends BasePage {
   // Element selectors (for reuse)
@@ -11,8 +8,8 @@ export class PlacedOrderPage extends BasePage {
     "//span[contains(text(), 'Thank you for your purchase!')]";
 
   private orderNumberLabel = new Label(
-      "//a[contains(@class, 'order')]//strong",
-      true,
+    "//a[contains(@class, 'order')]//strong",
+    true,
   );
 
   getOderNumber() {

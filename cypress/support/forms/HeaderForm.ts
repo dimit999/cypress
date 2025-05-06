@@ -7,21 +7,34 @@ export class HeaderForm {
     "(//button[contains(@class, 'switch')])[1]",
     true,
   );
-  private userSignOut = new Button(
+  private myWishlistButton = new Button(
+    "(//div[contains(@class, 'menu')]//a[contains(@href, 'wishlist')])[1]",
+    true,
+  );
+  private userSignOutButton = new Button(
     "(//div[contains(@class, 'menu')]//a[contains(@href, 'logout')])[1]",
     true,
   );
 
-  private basketButton = new Button("//div[contains(@class, 'minicart')]//a[contains(@class, 'showcart')]", true);
+  private basketButton = new Button(
+    "//div[contains(@class, 'minicart')]//a[contains(@class, 'showcart')]",
+    true,
+  );
   private basketItemsLabel = new Label(
     "//a[contains(@class, 'showcart')]//span[contains(@class, 'counter-number')]",
     true,
   );
 
   private noItemsMsgLabel = new Label(
-      "//strong[contains(text(), 'no items')]",
-      true,
+    "//strong[contains(text(), 'no items')]",
+    true,
   );
+
+  myWishlist(): void {
+    this.userSwitcherButton.waitElementState("visible");
+    this.userSwitcherButton.click();
+    this.myWishlistButton.click();
+  }
 
   /**
    * Signs the user out of the application by interacting with the user switcher button
@@ -29,9 +42,10 @@ export class HeaderForm {
    *
    * @return {void} No return value.
    */
-  signOut() {
+  signOut(): void {
+    this.userSwitcherButton.waitElementState("visible");
     this.userSwitcherButton.click();
-    this.userSignOut.click();
+    this.userSignOutButton.click();
   }
 
   getBasketQtyItems() {
@@ -41,8 +55,8 @@ export class HeaderForm {
   }
 
   clickBasketButton() {
-    this.basketItemsLabel.waitElementState('visible')
-    this.basketButton.waitUntilStableAndVisible()
+    this.basketItemsLabel.waitElementState("visible");
+    this.basketButton.waitUntilStableAndVisible();
     this.basketButton.click();
   }
 }

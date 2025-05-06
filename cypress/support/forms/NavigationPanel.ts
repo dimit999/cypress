@@ -10,6 +10,14 @@ export class NavigationPanel {
     "//ul[contains(@style, 'block')]//span[contains(text(), 'Tops')]",
     true,
   );
+  private gearTab = new Label(
+    "//a[contains(@role, 'menuitem')]//span[contains(text(), 'Gear')]",
+    true,
+  );
+  private gearBagsTab = new Label(
+    "//ul[contains(@class, 'submenu')]//span[contains(text(), 'Bags')]",
+    true,
+  );
 
   /**
    * Clicks the Women tab in the navigation panel.
@@ -21,5 +29,10 @@ export class NavigationPanel {
   clickWomenTops() {
     this.womenTab.hover();
     this.womenTopsTab.click();
+  }
+
+  clickGearBags() {
+    this.gearTab.hover();
+    this.gearBagsTab.click();
   }
 }

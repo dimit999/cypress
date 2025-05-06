@@ -1,5 +1,6 @@
 import "cypress-real-events/support";
-import { ElementState } from './types';
+import { ElementState } from "./types";
+import { DEFAULT_UI_TIMEOUT } from "@support/constants/ui";
 
 export abstract class BaseElement {
   protected selector: string;
@@ -13,8 +14,10 @@ export abstract class BaseElement {
   /**
    * Gets the Cypress chainable for the element.
    */
-  get() {
-    return this.isXpath ? cy.xpath(this.selector) : cy.get(this.selector);
+  get(timeout = DEFAULT_UI_TIMEOUT) {
+    return this.isXpath
+      ? cy.xpath(this.selector, { timeout })
+      : cy.get(this.selector, { timeout });
   }
 
   /**
@@ -74,14 +77,16 @@ export abstract class BaseElement {
       return this.get().then(($el) => {
         const rect = $el[0].getBoundingClientRect();
 
-        if (prevRect &&
-            rect.top === prevRect.top &&
-            rect.left === prevRect.left &&
-            rect.width === prevRect.width &&
-            rect.height === prevRect.height) {
+        if (
+          prevRect &&
+          rect.top === prevRect.top &&
+          rect.left === prevRect.left &&
+          rect.width === prevRect.width &&
+          rect.height === prevRect.height
+        ) {
           stableCount++;
         } else {
-          stableCount = 1;  // Reset count if the position changed
+          stableCount = 1; // Reset count if the position changed
         }
 
         prevRect = rect;
@@ -94,12 +99,11 @@ export abstract class BaseElement {
         // If not stable yet, wait for 'delay' ms and then check again
         return cy.wait(delay).then(() => checkStable()); // Retry the check
       });
-    }
+    };
 
     // Start the check process
     return checkStable();
   }
-
 
   /**
    * Waits until the element's location is stable (not moving) for a short period and is visible.
@@ -107,7 +111,7 @@ export abstract class BaseElement {
    * Returns a Cypress chainable for further chaining.
    */
   waitUntilStableAndVisible(
-    timeout = 10000,
+    timeout = DEFAULT_UI_TIMEOUT,
     checks = 3,
     delay = 100,
   ): Cypress.Chainable<JQuery<HTMLElement>> {
@@ -122,22 +126,39 @@ export abstract class BaseElement {
     return this.get().invoke("text");
   }
 
-  waitElementState(state: ElementState, timeout = 4000) {
-    const getElement = () => this.isXpath
+  waitElementState(state: ElementState, timeout = DEFAULT_UI_TIMEOUT) {
+    const getElement = () =>
+      this.isXpath
         ? cy.xpath(this.selector, { timeout })
         : cy.get(this.selector, { timeout });
 
     switch (state) {
       case "visible":
-        return getElement().should('be.visible');
+        return getElement().should("be.visible");
       case "not_visible":
-        return getElement().should('not.be.visible');
+        return getElement().should("not.be.visible");
       case "present":
-        return getElement().should('exist');
+        return getElement().should("exist");
       case "absent":
-        return getElement().should('not.exist');
+        return getElement().should("not.exist");
       default:
         throw new Error(`Unknown state: ${state}`);
     }
+  }
+
+  /**
+   * Waits until the specified attribute is absent (undefined) from the element.
+   * @param attr - The attribute name to check for absence.
+   * @param timeout - Optional timeout in ms.
+   * @returns Cypress.Chainable
+   */
+  waitUntilAttributeAbsent(
+    attr: string,
+    timeout = DEFAULT_UI_TIMEOUT,
+  ): Cypress.Chainable<JQuery<HTMLElement>> {
+    return this.get(timeout).should(($el) => {
+      const value = $el.attr(attr);
+      expect(value, `Attribute "${attr}" should be absent`).to.be.undefined;
+    });
   }
 }

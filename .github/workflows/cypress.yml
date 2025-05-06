@@ -6,17 +6,17 @@ on:
   workflow_dispatch:
     inputs:
       browser:
-        description: 'Browser to run tests on'
+        description: "Browser to run tests on"
         required: true
-        default: 'chrome'
+        default: "chrome"
         type: choice
         options:
           - chrome
           - firefox
       containers:
-        description: 'Number of containers to use'
+        description: "Number of containers to use"
         required: true
-        default: '1'
+        default: "1"
         type: choice
         options:
           - 1
@@ -57,4 +57,4 @@ jobs:
         with:
           name: mochawesome-report
           path: cypress/reports/index.html
-        continue-on-error: true  # Ensure this step runs even if previous steps fail
+        continue-on-error: true # Ensure this step runs even if previous steps fail
