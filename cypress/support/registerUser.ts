@@ -1,5 +1,5 @@
-import { RegisterPage } from '@pages/RegisterPage';
-import { MyAccountPage } from '@pages/MyAccountPage';
+import { RegisterPage } from '@support/pages/RegisterPage';
+import { MyAccountPage } from '@support/pages/MyAccountPage';
 
 /**
  * Registers a new user via UI and returns the credentials.

@@ -1,6 +1,6 @@
-import { ItemPage } from "@pages/navigationPages/ItemPage";
-import { WomenTopsPage } from "@pages/navigationPages/WomenTopsPage";
-import { Browser } from "@support/ui/browser/Browser";
+import { ItemPage } from "@support/pages/navigationPages/ItemPage";
+import { WomenTopsPage } from "@support/pages/navigationPages/WomenTopsPage";
+import { Browser } from "@support/framework/browser/Browser";
 
 export class ProductItemsSteps {
   /**

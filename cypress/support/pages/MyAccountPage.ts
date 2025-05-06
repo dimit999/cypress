@@ -1,7 +1,7 @@
-import { Label } from '../ui/baseElements/Label';
-import { Button } from '../ui/baseElements/Button';
-import { NavigationPanel } from '@support/forms/NavigationPanel';
-import { BasePage } from '../ui/basePage/BasePage';
+import { Label } from '@support/framework/baseElements/Label';
+import { Button } from '@support/framework/baseElements/Button';
+import { NavigationPanel } from '../forms/NavigationPanel';
+import { BasePage } from '@support/framework/basePage/BasePage';
 
 export class MyAccountPage extends BasePage {
     // Element selectors (for reuse)

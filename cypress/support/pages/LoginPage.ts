@@ -1,6 +1,6 @@
-import { Input } from '../ui/baseElements/Input';
-import { Button } from '../ui/baseElements/Button';
-import { BasePage } from '../ui/basePage/BasePage';
+import { Input } from '@support/framework/baseElements/Input';
+import { Button } from '@support/framework/baseElements/Button';
+import { BasePage } from '@support/framework/basePage/BasePage';
 
 export class LoginPage extends BasePage {
   // Element selectors (for reuse)

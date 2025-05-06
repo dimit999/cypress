@@ -1,4 +1,4 @@
-import { Label } from '../ui/baseElements/Label';
+import { Label } from '@support/framework/baseElements/Label';
 
 export class NavigationPanel {
   // Selectors for navigation tabs

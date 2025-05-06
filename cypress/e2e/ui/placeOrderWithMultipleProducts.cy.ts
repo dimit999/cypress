@@ -1,5 +1,5 @@
 import { setupUserRegistration } from 'cypress/support/testSetup';
-import { MyAccountPage } from '@pages/MyAccountPage';
+import { MyAccountPage } from '@support/pages/MyAccountPage';
 import {ProductItemsSteps} from "@support/steps/ProductItemsSteps";
 
 const { getUser } = setupUserRegistration();

@@ -1,7 +1,7 @@
-import { Input } from '../ui/baseElements/Input';
-import { Button } from '../ui/baseElements/Button';
-import { BasePage } from '../ui/basePage/BasePage';
-import {Label} from "@support/ui/baseElements/Label";
+import { Input } from '@support/framework/baseElements/Input';
+import { Button } from '@support/framework/baseElements/Button';
+import { BasePage } from '@support/framework/basePage/BasePage';
+import {Label} from "@support/framework/baseElements/Label";
 
 export class RegisterPage extends BasePage {
   // Element selectors (for reuse)
