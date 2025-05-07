@@ -8,6 +8,5 @@ module.exports = {
     es6: true,
   },
   rules: {
-    // Add or override rules here
   },
 };
